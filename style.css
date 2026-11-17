@@ -1,0 +1,178 @@
+/* =====================================================
+   1. CSS Variables & Base Styles
+   ===================================================== */
+:root {
+  --navy: #0e1a36;
+  --blue: #2457f5;
+  --blue-light: #9db8ff;
+  --grey-soft: #eef2f9;
+  --white: #ffffff;
+  --text-dark: #111b33;
+  --text-body: #33415c;
+  --text-muted: #5c6b84;
+  --border: #d8e0ee;
+  --radius: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-body);
+  background-color: var(--white);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', Georgia, serif;
+  line-height: 1.2;
+}
+
+p, li {
+  max-width: 65ch;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* =====================================================
+   2. Container & Full-Width Bands
+   ===================================================== */
+.wrap {
+  width: min(960px, 90vw);
+  margin-inline: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.band {
+  padding-block: clamp(3.5rem, 6vw, 5.25rem);
+  position: relative;
+}
+
+.band-dark {
+  background-color: var(--navy);
+  background-image: radial-gradient(rgba(157, 184, 255, 0.14) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--white);
+  overflow: hidden;
+}
+
+.band-light {
+  background-color: var(--grey-soft);
+}
+
+.band-white {
+  background-color: var(--white);
+}
+
+/* =====================================================
+   3. Sticky White Header + Scroll Progress Bar
+   ===================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 0.85rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-body);
+  border-radius: 6px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.scroll-progress {
+  height: 3px;
+  width: 100%;
+  background: var(--blue);
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: fill-scroll linear both;
+  animation-timeline: scroll(root);
+}
+
+@keyframes fill-scroll {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* =====================================================
+   4. Hero Section (Rings, Green Dot Badge, Two-Tone Name)
+   ===================================================== */
+#hero {
+  padding-block: clamp(4rem, 7vw, 6rem);
+}
+
+.hero-rings {
+  position: absolute;
+  right: -80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  border: 28px solid rgba(36, 87, 245, 0.12);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-rings::after {
+  content: "";
+  position: absolute;
+  inset: 42px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(157, 184, 255, 0.2);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(157, 184, 255, 0.35);
+  color: #e4ecff;
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom
